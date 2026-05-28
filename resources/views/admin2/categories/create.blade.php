@@ -48,7 +48,9 @@
                                     <select id="parent_id" name="parent_id" class="form-control">
                                         <option value="0">Main category</option>
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id}}">{{ $category -> title }}
+                                            <option value="{{ $category->id}}"> @if($category->parent_id && $category->parent_id !=0)
+                                                    {{ $category->full_path }}@endif
+                                                    {{ $category -> title }}
                                             </option>
                                         @endforeach
                                         <option></option>
