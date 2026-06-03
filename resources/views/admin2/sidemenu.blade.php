@@ -31,7 +31,7 @@
               id="navigation"
             >
               <li class="nav-item menu-open">
-                <a href="{{route('admin2.home')}}" class="nav-link active">
+                <a href="{{route('admin2.index')}}" class="nav-link active">
                   <i class="nav-icon bi bi-speedometer2"></i>
                   <p>
                    Homepage
@@ -48,7 +48,7 @@
               </li>
 
                 <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin2.product.index') }}" class="nav-link">
                   <i class="nav-icon bi bi-box-seam"></i>
                   <p>Products</p>
                 </a>

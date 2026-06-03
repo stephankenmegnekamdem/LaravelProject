@@ -1,8 +1,9 @@
+{{-- CORRECT: product belongs to a category --}}
 <div class="mb-3">
     <label class="form-label">Parent Category</label>
     {{-- ✅ Fixed: "form control" → "form-select" --}}
     <select name="parent_id" class="form-select @error('parent_id') is-invalid @enderror">
-        <option value="0">— Main Category (no parent) —</option>
+        <option value="">— Main Category (no parent) —</option>
         @foreach($categories as $item)
             {{-- ✅ Fixed: exclude self to prevent circular reference --}}
             @if($item->id !== ($category->id ?? null))

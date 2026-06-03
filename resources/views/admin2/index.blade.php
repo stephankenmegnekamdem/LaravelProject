@@ -1,5 +1,4 @@
 @extends('layout.admin2')
-
 @section('content')
  <!--begin::App Main-->
       <main class="app-main">
