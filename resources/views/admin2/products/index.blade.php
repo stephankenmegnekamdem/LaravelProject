@@ -7,9 +7,11 @@
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-sm-3">
-                    <a href="{{ route('admin2.product.create') }}" class="btn btn-success mb-2">
-                        <i class="fas fa-plus me-1"></i> Add Product
-                    </a>
+                   @if(auth()->check() && auth()->user()->hasRole('admin'))
+<a href="{{ route('admin2.product.create') }}" class="btn btn-primary">
+Add Product
+</a>
+@endif
                 </div>
                 <div class="col-sm-3">
                     <h3 class="mb-0">Products</h3>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin2\Admin2HomeController;
 use App\Http\Controllers\Admin2\Admin2ProductController;
+use App\Http\Controllers\Admin2\AuthController;
 use App\Http\Controllers\Admin2\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
@@ -22,11 +23,13 @@ Route::get('/admin2/categories/{category}', [CategoryController::class, 'show'])
 Route::get('/admin2/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin2.categories.edit');
 Route::put('/admin2/categories/{category}', [CategoryController::class, 'update'])->name('admin2.categories.update');
 Route::delete('/admin2/categories/{category}', [CategoryController::class, 'destroy'])->name('admin2.categories.destroy');
-*/
+*/Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
-Route::prefix('/admin2') ->name('admin2.')->group(function(){
+Route::prefix('/admin2')->name('admin2.')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', function () {return view('admin2.index');})->name('index');
 
 // category

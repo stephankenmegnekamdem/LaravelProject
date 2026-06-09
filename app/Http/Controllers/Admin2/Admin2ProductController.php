@@ -46,7 +46,7 @@ class Admin2ProductController extends Controller
 
        $product = new Product();
         $product  ->  category_id = $request->category_id;
-        $product->user_id = 1;
+        $product->user_id = Auth::id();
           $product  ->  title = $request->title;
            $product  -> keywords = $request->keywords;
            $product  -> description = $request->description;
