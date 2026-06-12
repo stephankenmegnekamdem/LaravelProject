@@ -44,7 +44,7 @@
                     <!--begin::Body-->
                     <div class="card-body">
                         <div class="mb-3">
-                        <label  class="form-label">Status</label>
+                        <label  class="form-label">Parent Category</label>
                                     <select id="parent_id" name="parent_id" class="form-control">
                                         <option value="0">Main category</option>
                                         @foreach($categories as $category)

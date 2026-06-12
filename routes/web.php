@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin2\Admin2HomeController;
 use App\Http\Controllers\Admin2\Admin2ProductController;
-use App\Http\Controllers\Admin2\AuthController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin2\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
@@ -14,6 +17,84 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
+/* There are 2 admin routes,admin is different from doctors own,  admin2 route  is same as doctors template, */
+
+
+
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/choose-template', function () {
+    return view('choose-template');
+})->name('choose.template')->middleware('auth');
+
+
+/*Admin template, different template*/
+
+Route::get('/admin', [AdminHomeController::class, 'index'])->name('admin.home');
+
+Route::prefix('/admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/', function () {return view('admin.index');})->name('index');
+
+// category
+    Route::prefix('categories') ->name('categories.')->controller (AdminCategoryController::class)->group(function(){
+
+        Route::get('/', 'index')->name('index');
+
+        Route::get('/create', 'create')->name('create');
+
+        Route::post('/store', 'store')->name('store');
+
+        Route::get('/show/{category}', 'show')->name('show');
+
+        Route::get('/edit/{category}', 'edit')->name('edit');
+
+        Route::put('/update/{category}', 'update')->name('update');
+
+        Route::delete('/delete/{category}', 'destroy')->name('destroy');
+
+
+});
+
+// product
+    Route::prefix('product') ->name('product.')->controller (AdminProductController::class)->group(function(){
+
+        Route::get('/', 'index')->name('index');
+
+        Route::get('/create', 'create')->name('create');
+
+        Route::post('/store', 'store')->name('store');
+
+        Route::get('/show/{product}', 'show')->name('show');
+
+        Route::get('/edit/{product}', 'edit')->name('edit');
+
+        Route::put('/update/{product}', 'update')->name('update');
+
+        Route::delete('/delete/{product}', 'destroy')->name('destroy');
+    });
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*admin2 same as for Doctor*/
 Route::get('/admin2', [Admin2HomeController::class, 'index'])->name('admin2.home');
 /**
 Route::get('/admin2/categories', [CategoryController::class, 'index'])->name('admin2.categories.index');
@@ -23,11 +104,7 @@ Route::get('/admin2/categories/{category}', [CategoryController::class, 'show'])
 Route::get('/admin2/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin2.categories.edit');
 Route::put('/admin2/categories/{category}', [CategoryController::class, 'update'])->name('admin2.categories.update');
 Route::delete('/admin2/categories/{category}', [CategoryController::class, 'destroy'])->name('admin2.categories.destroy');
-*/Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.post');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-
+*/
 
 Route::prefix('/admin2')->name('admin2.')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', function () {return view('admin2.index');})->name('index');
@@ -74,6 +151,25 @@ Route::prefix('/admin2')->name('admin2.')->middleware(['auth', 'role:admin'])->g
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
 
