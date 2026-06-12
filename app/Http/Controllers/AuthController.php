@@ -21,7 +21,7 @@ $request->validate([
 $credentials = $request->only('email', 'password');
 if (Auth::attempt($credentials, $request->filled('remember'))) {
 $request->session()->regenerate();
-return redirect()->intended(route('choose.template')); // Redirect to before login route
+return redirect()->intended(route('home')); // Redirect to before login route
 }
 return back()->withErrors([
 'email' => 'Invalid email or password.',

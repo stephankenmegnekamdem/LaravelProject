@@ -219,12 +219,15 @@
 
     <!--begin::Menu Footer-->
     <li class="user-footer">
-      <a href="#" class="btn btn-outline-secondary">Profile</a>
-      <form action="{{ route('logout') }}" method="POST" class="d-inline">
+    <a href="#" class="btn btn-outline-secondary">Profile</a>
+    <a href="{{ route('home') }}" class="btn btn-outline-primary">
+        <i class="fas fa-home fa-sm mr-1"></i> Home
+    </a>
+    <form action="{{ route('logout') }}" method="POST" class="d-inline">
         @csrf
         <button type="submit" class="btn btn-outline-danger float-end">Sign out</button>
-      </form>
-    </li>
+    </form>
+</li>
     <!--end::Menu Footer-->
   </ul>
 </li>

@@ -198,6 +198,10 @@
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a>
+                                <a class="dropdown-item" href="{{ route('home') }}">
+    <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
+    Home
+</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                    <form action="{{ route('logout') }}" method="POST">

@@ -44,19 +44,88 @@
                             <a href="#" class="dropdown-item"> Italiano</a>
                         </div>
                     </div>
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-toggle text-muted ms-2" data-bs-toggle="dropdown"><small><i
-                                    class="fa fa-home me-2"></i> My Dashboard</small></a>
-                        <div class="dropdown-menu rounded">
-                            <a href="#" class="dropdown-item"> Login</a>
-                            <a href="#" class="dropdown-item"> Wishlist</a>
-                            <a href="#" class="dropdown-item"> My Card</a>
-                            <a href="#" class="dropdown-item"> Notifications</a>
-                            <a href="#" class="dropdown-item"> Account Settings</a>
-                            <a href="#" class="dropdown-item"> My Account</a>
-                            <a href="#" class="dropdown-item"> Log Out</a>
-                        </div>
-                    </div>
+                   <div class="dropdown">
+    <a href="#" class="dropdown-toggle text-muted ms-2" data-bs-toggle="dropdown">
+        <small>
+            <i class="fa fa-home me-2"></i>
+            @auth
+                {{ Auth::user()->name }}
+            @else
+                My Dashboard
+            @endauth
+        </small>
+    </a>
+    <div class="dropdown-menu rounded">
+
+        @auth
+            <!-- User Info -->
+            <span class="dropdown-item-text font-weight-bold text-dark">
+                <i class="fas fa-user fa-sm mr-2"></i> {{ Auth::user()->name }}
+            </span>
+            <span class="dropdown-item-text text-muted small">
+                {{ Auth::user()->email }}
+            </span>
+            <div class="dropdown-divider"></div>
+        @endauth
+
+        <!-- Home -->
+        <a href="{{ route('home') }}" class="dropdown-item">
+            <i class="fas fa-home fa-sm mr-2"></i> Home
+        </a>
+
+        <!-- Admin Links (only for admins) -->
+        @auth
+            @if(Auth::user()->hasRole('admin'))
+                <div class="dropdown-divider"></div>
+                <span class="dropdown-item-text text-muted small text-uppercase">
+                    Admin Panels
+                </span>
+                <a href="{{ route('admin.index') }}" class="dropdown-item">
+                    <i class="fas fa-columns fa-sm mr-2 text-primary"></i> SB Admin 2
+                </a>
+                <a href="{{ route('admin2.index') }}" class="dropdown-item">
+                    <i class="fas fa-tachometer-alt fa-sm mr-2 text-success"></i> AdminLTE
+                </a>
+                <div class="dropdown-divider"></div>
+            @endif
+        @endauth
+
+        <!-- Links -->
+        <a href="#" class="dropdown-item">
+            <i class="fas fa-heart fa-sm mr-2"></i> Wishlist
+        </a>
+        <a href="#" class="dropdown-item">
+            <i class="fas fa-shopping-cart fa-sm mr-2"></i> My Cart
+        </a>
+        <a href="#" class="dropdown-item">
+            <i class="fas fa-bell fa-sm mr-2"></i> Notifications
+        </a>
+        <a href="#" class="dropdown-item">
+            <i class="fas fa-cog fa-sm mr-2"></i> Account Settings
+        </a>
+        <a href="#" class="dropdown-item">
+            <i class="fas fa-user-circle fa-sm mr-2"></i> My Account
+        </a>
+
+        <div class="dropdown-divider"></div>
+
+        @guest
+            <a href="{{ route('login') }}" class="dropdown-item">
+                <i class="fas fa-sign-in-alt fa-sm mr-2"></i> Login
+            </a>
+        @endguest
+
+        @auth
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="dropdown-item text-danger">
+                    <i class="fas fa-sign-out-alt fa-sm mr-2"></i> Logout
+                </button>
+            </form>
+        @endauth
+
+    </div>
+</div>
                 </div>
             </div>
         </div>

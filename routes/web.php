@@ -10,24 +10,35 @@ use App\Http\Controllers\Admin2\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FrontendProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
+Route::get('/products', [FrontendProductController::class, 'index'])->name('productlist');
+//Route::get('/products/{id}', [FrontendProductController::class, 'show'])->name('products.show');
 
 /* There are 2 admin routes,admin is different from doctors own,  admin2 route  is same as doctors template, */
+// Root route
+Route::get('/', function () {
+    if (Auth::check()) {
+        $user = Auth::user();
+
+        if ($user->hasRole('admin')) {
+            return redirect()->route('admin.index'); // default admin panel
+        }
+
+        return redirect()->route('home'); // logged in but not admin → home
+    }
+
+    return redirect()->route('home'); // not logged in → home
+})->name('root');
 
 
-
-Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.post');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/choose-template', function () {
-    return view('choose-template');
-})->name('choose.template')->middleware('auth');
-
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post')->middleware('guest');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 /*Admin template, different template*/
 
