@@ -29,11 +29,11 @@ class Category extends Model
 
     public function getFullPathAttribute(): string
     {
-        $titles   = [];
-        $current  = $this;
-        $visited  = []; // ✅ Track visited IDs to prevent infinite loop
+        $titles = [];
+        $current = $this;
+        $visited = []; // ✅ Track visited IDs to prevent infinite loop
         $maxDepth = 10; // ✅ Hard limit on depth
-        $depth    = 0;
+        $depth = 0;
 
         while ($current && $depth < $maxDepth) {
             // ✅ Break if we've already visited this category (circular reference)
@@ -41,8 +41,8 @@ class Category extends Model
                 break;
             }
 
-            $visited[]  = $current->id;
-            $titles[]   = $current->title;
+            $visited[] = $current->id;
+            $titles[] = $current->title;
             $depth++;
 
             if (!$current->parent_id || $current->parent_id == 0) {
@@ -58,5 +58,14 @@ class Category extends Model
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function allProductsCount()
+    {
+        $count = $this->products()->count();
+        foreach ($this->children as $child) {
+            $count += $child->products()->count();
+        }
+        return $count;
     }
 }

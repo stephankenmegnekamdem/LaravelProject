@@ -14,45 +14,46 @@
                         <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                     </div>
                     <div class="product-categories mb-4">
-                        <h4>Products Categories</h4>
-                        <ul class="list-unstyled">
+    <h4>Products Categories</h4>
+    <ul class="list-unstyled">
+        @forelse($categories as $category)
+            <li>
+                <div class="categories-item">
+                    <a href="#" class="text-dark">
+                        <i class="fas fa-th-large text-secondary me-2"></i>
+                        {{ $category->title }}
+                    </a>
+                    <span>({{ $category->children->count() }})</span>
+                </div>
+                {{-- Subcategories --}}
+                @if($category->children->isNotEmpty())
+                    <ul class="list-unstyled ms-3">
+                        @foreach($category->children as $child)
                             <li>
                                 <div class="categories-item">
-                                    <a href="#" class="text-dark"><i class="fas fa-apple-alt text-secondary me-2"></i>
-                                        Accessories</a>
-                                    <span>(3)</span>
+                                    <a href="#" class="text-dark">
+                                        <i class="fas fa-angle-right text-secondary me-2"></i>
+                                        {{ $child->title }}
+                                    </a>
+                                    <span>({{ $child->products()->count() }})</span>
                                 </div>
                             </li>
-                            <li>
-                                <div class="categories-item">
-                                    <a href="#" class="text-dark"><i class="fas fa-apple-alt text-secondary me-2"></i>
-                                        Electronics & Computer</a>
-                                    <span>(5)</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="categories-item">
-                                    <a href="#" class="text-dark"><i
-                                            class="fas fa-apple-alt text-secondary me-2"></i>Laptops & Desktops</a>
-                                    <span>(2)</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="categories-item">
-                                    <a href="#" class="text-dark"><i
-                                            class="fas fa-apple-alt text-secondary me-2"></i>Mobiles & Tablets</a>
-                                    <span>(8)</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="categories-item">
-                                    <a href="#" class="text-dark"><i
-                                            class="fas fa-apple-alt text-secondary me-2"></i>SmartPhone & Smart TV</a>
-                                    <span>(5)</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                        @endforeach
+                    </ul>
+                @endif
+            </li>
+        @empty
+            <li>
+                <div class="categories-item">
+                    <a href="#" class="text-dark">
+                        <i class="fas fa-info-circle text-secondary me-2"></i>
+                        No categories found
+                    </a>
+                </div>
+            </li>
+        @endforelse
+    </ul>
+</div>
                     <div class="additional-product mb-4">
                         <h4>Select By Color</h4>
                         <div class="additional-product-item">
@@ -641,3 +642,4 @@
     </div>
     <!-- Related Product End -->
 @endsection
+

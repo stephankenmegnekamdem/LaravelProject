@@ -15,7 +15,7 @@
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <a href="#" class="text-muted me-2"> Help</a><small> / </small>
                     <a href="#" class="text-muted mx-2"> Support</a><small> / </small>
-                    <a href="#" class="text-muted ms-2"> Contact</a>
+                    <a href="{{route('contacts.index')}}" class="text-muted ms-2"> Contact</a>
 
                 </div>
             </div>
@@ -94,7 +94,7 @@
         <a href="#" class="dropdown-item">
             <i class="fas fa-heart fa-sm mr-2"></i> Wishlist
         </a>
-        <a href="#" class="dropdown-item">
+        <a href="{{route('cart.index')}}" class="dropdown-item">
             <i class="fas fa-shopping-cart fa-sm mr-2"></i> My Cart
         </a>
         <a href="#" class="dropdown-item">
@@ -164,7 +164,7 @@
                             class="rounded-circle btn-md-square border"><i class="fas fa-random"></i></i></a>
                     <a href="#" class="text-muted d-flex align-items-center justify-content-center me-3"><span
                             class="rounded-circle btn-md-square border"><i class="fas fa-heart"></i></a>
-                    <a href="#" class="text-muted d-flex align-items-center justify-content-center"><span
+                    <a href="{{route('cart.index')}}" class="text-muted d-flex align-items-center justify-content-center"><span
                             class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span>
                         <span class="text-dark ms-2">$0.00</span></a>
                 </div>

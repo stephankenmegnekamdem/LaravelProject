@@ -54,55 +54,47 @@
                 </a>
               </li>
 
-                <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-star"></i>
-                  <p>Reviews</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-box-seam-fill"></i>
-                  <p>
-                    Orders
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>New orders</p>
-                    </a>
-                  </li>
-                    <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Accepted orders</p>
-                    </a>
-                  </li>
-                    <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>OnShipping orders</p>
-                    </a>
-                  </li>
-                    <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Completed orders</p>
-                    </a>
-                  </li>
-                    <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Cancelled orders</p>
-                    </a>
-                  </li>
-
-                </ul>
-              </li>
+              <li class="nav-item has-treeview">
+    <a href="#" class="nav-link">
+        <i class="nav-icon bi bi-cart-check"></i>
+        <p>
+            Orders
+            <i class="right bi bi-chevron-right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{ route('admin2.orders.index', ['status' => 'New']) }}" class="nav-link">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>New Orders</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin2.orders.index', ['status' => 'Accepted']) }}" class="nav-link">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Accepted Orders</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin2.orders.index', ['status' => 'Onshipping']) }}" class="nav-link">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>OnShipping Orders</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin2.orders.index', ['status' => 'Completed']) }}" class="nav-link">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Completed Orders</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('admin2.orders.index', ['status' => 'Cancelled']) }}" class="nav-link">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Cancelled Orders</p>
+            </a>
+        </li>
+    </ul>
+</li>
 
 
 

@@ -3,47 +3,43 @@
         <div class="row gx-0 bg-primary px-5 align-items-center">
             <div class="col-lg-3 d-none d-lg-block">
                 <nav class="navbar navbar-light position-relative" style="width: 250px;">
-                    <button class="navbar-toggler border-0 fs-4 w-100 px-0 text-start" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#allCat">
-                        <h4 class="m-0"><i class="fa fa-bars me-2"></i>All Categories</h4>
-                    </button>
-                    <div class="collapse navbar-collapse rounded-bottom" id="allCat">
-                        <div class="navbar-nav ms-auto py-0">
-                            <ul class="list-unstyled categories-bars">
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Accessories</a>
-                                        <span>(3)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Electronics & Computer</a>
-                                        <span>(5)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Laptops & Desktops</a>
-                                        <span>(2)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">Mobiles & Tablets</a>
-                                        <span>(8)</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="categories-bars-item">
-                                        <a href="#">SmartPhone & Smart TV</a>
-                                        <span>(5)</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+    <button class="navbar-toggler border-0 fs-4 w-100 px-0 text-start" type="button"
+        data-bs-toggle="collapse" data-bs-target="#allCat">
+        <h4 class="m-0"><i class="fa fa-bars me-2"></i>All Categories</h4>
+    </button>
+    <div class="collapse navbar-collapse rounded-bottom" id="allCat">
+        <div class="navbar-nav ms-auto py-0">
+            <ul class="list-unstyled categories-bars">
+    @forelse($categories as $category)
+        <li>
+            <div class="categories-bars-item">
+                <a href="#"><strong>{{ $category->title }}</strong></a>
+            </div>
+            {{-- Subcategories --}}
+            @if($category->children->count() > 0)
+                <ul class="list-unstyled ms-3">
+                    @foreach($category->children as $child)
+                        <li>
+                            <div class="categories-bars-item">
+                                <a href="#">{{ $child->title }}</a>
+                                <span>({{ $child->products()->count() }})</span>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
+        </li>
+    @empty
+        <li>
+            <div class="categories-bars-item">
+                <a href="#">No categories found</a>
+            </div>
+        </li>
+    @endforelse
+</ul>
+        </div>
+    </div>
+</nav>
             </div>
             <div class="col-12 col-lg-9">
                 <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
@@ -59,7 +55,7 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">
                             <a href="{{route('home')}}" class="nav-item nav-link active">Home</a>
-                            <a href="shop.html" class="nav-item nav-link">Shop</a>
+                           <a href="{{ route('shop') }}" class="nav-item nav-link">Shop</a>
                             <a href="{{route('productlist')}}" class="nav-item nav-link">Products</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>

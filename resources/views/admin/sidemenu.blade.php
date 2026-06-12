@@ -46,23 +46,22 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed"  href="{{asset('assets') }}/admin/#" data-toggle="collapse" data-target="#collapseOrders"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-clipboard-list"></i>
-                    <span>Orders</span>
-                </a>
-                <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Orders Tracking</h6>
-                        <a class="collapse-item"  href="{{asset('assets') }}/admin/#">New orders</a>
-                        <a class="collapse-item"  href="{{asset('assets') }}/admin/#">Accepted orders</a>
-                        <a class="collapse-item"  href="{{asset('assets') }}/admin/#">OnShipping orders</a>
-                        <a class="collapse-item"  href="{{asset('assets') }}/admin/#">Completed orders</a>
-                        <a class="collapse-item"  href="{{asset('assets') }}/admin/#">Cancelled orders</a>
-
-                    </div>
-                </div>
-            </li>
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrders"
+        aria-expanded="true" aria-controls="collapseOrders">
+        <i class="fas fa-fw fa-clipboard-list"></i>
+        <span>Orders</span>
+    </a>
+    <div id="collapseOrders" class="collapse" aria-labelledby="headingOrders" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Orders Tracking</h6>
+            <a class="collapse-item" href="{{ route('admin.orders.index', ['status' => 'New']) }}">New Orders</a>
+            <a class="collapse-item" href="{{ route('admin.orders.index', ['status' => 'Accepted']) }}">Accepted Orders</a>
+            <a class="collapse-item" href="{{ route('admin.orders.index', ['status' => 'Onshipping']) }}">OnShipping Orders</a>
+            <a class="collapse-item" href="{{ route('admin.orders.index', ['status' => 'Completed']) }}">Completed Orders</a>
+            <a class="collapse-item" href="{{ route('admin.orders.index', ['status' => 'Cancelled']) }}">Cancelled Orders</a>
+        </div>
+    </div>
+</li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">

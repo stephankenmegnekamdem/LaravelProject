@@ -37,16 +37,4 @@
     <a href="{{ route('contacts.create') }}">Add New Contact</a>
 </body>
 </html>
-```
 
----
-
-### Your folder structure should look like:
-```
-resources/views/
-├── home/
-│   └── contactlist.blade.php   ← create this
-├── contacts/
-│   └── index.blade.php
-├── home.blade.php
-└── welcome.blade.php
