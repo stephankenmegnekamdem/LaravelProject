@@ -15,7 +15,7 @@
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <a href="#" class="text-muted me-2"> Help</a><small> / </small>
                     <a href="#" class="text-muted mx-2"> Support</a><small> / </small>
-                    <a href="{{route('contacts.index')}}" class="text-muted ms-2"> Contact</a>
+                    <a href="{{route('contacts.create')}}" class="text-muted ms-2"> Contact</a>
 
                 </div>
             </div>

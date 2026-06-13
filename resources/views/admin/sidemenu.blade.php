@@ -130,8 +130,9 @@
             <div class="sidebar-heading">
                 Others
             </div>
-<li class="nav-item">
-                <a class="nav-link"  href="#">
+
+            <li class="nav-item">
+                <a class="nav-link"  href="{{route('contacts.index')}}">
                     <i class="fas fa-fw fa-comment-dots"></i>
                     <span>Contact Message</span></a>
             </li>
