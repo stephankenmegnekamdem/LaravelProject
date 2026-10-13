@@ -98,8 +98,10 @@ resources/views/
 
 **1. Clone the repository:**
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/stephankenmegnekamdem/LaravelProject.git
+or
+git@github.com:stephankenmegnekamdem/LaravelProject.git
+cd LaravelProject
 ```
 
 **2. Install PHP dependencies:**
@@ -262,16 +264,6 @@ POST /admin2/categories/store   Store category
 ## Screenshots
 
 > Add screenshots of your project here.
-
-```
-screenshots/
-├── login.png
-├── home.png
-├── admin-dashboard.png
-├── admin2-dashboard.png
-├── categories.png
-└── orders.png
-```
 
 ---
 
