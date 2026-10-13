@@ -261,12 +261,6 @@ POST /admin2/categories/store   Store category
 
 ---
 
-## Screenshots
-
-> Add screenshots of your project here.
-
----
-
 ## License
 
 This project was developed as a university coursework assignment at Istanbul Nisantasi University.
